@@ -9,6 +9,8 @@ script sampleFunction(){
   console.log("Hello from the console!")
 }
 
+var things = []string{"Soccer", "Ping Pong", "Beer"}
+
 templ hello(name string) {
   <div>Hello, {name}</div>
   <p>{greeting}</p>
@@ -20,5 +22,13 @@ templ hello(name string) {
     > 
       click me!
     </button>
+  </div>
+
+  <div class='list'>
+    <ul>
+      for _, thing := range things {
+        <li>{thing}</li>
+      }
+    </ul>
   </div>
 }
