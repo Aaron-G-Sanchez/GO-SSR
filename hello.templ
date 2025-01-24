@@ -1,5 +1,7 @@
 package main
 
+import "strconv"
+
 var greeting = "Welcome to Go SSR!"
 
 var num = 0
@@ -11,8 +13,8 @@ script sampleFunction(){
 
 var things = []string{"Soccer", "Ping Pong", "Beer"}
 
-templ hello(name string) {
-  <div>Hello, {name}</div>
+templ hello() {
+  <div>Hello, Chravis</div>
   <p>{greeting}</p>
   <div>
     <button 
@@ -32,3 +34,22 @@ templ hello(name string) {
     </ul>
   </div>
 }
+
+templ counts(global int) {
+  <div>
+    <p>Global Count: { strconv.Itoa(global) }</p>
+  </div>
+}
+
+templ form() {
+  <form action="/" method="POST">
+    <button type="submit" name='global' value='global'>count+</button>
+  </form>
+}
+
+templ Page(global int) {
+  @hello()
+  @counts(global)
+  @form()
+}
+
