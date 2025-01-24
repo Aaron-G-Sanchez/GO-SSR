@@ -1,0 +1,24 @@
+package main
+
+var greeting = "Welcome to Go SSR!"
+
+var num = 0
+
+script sampleFunction(){
+
+  console.log("Hello from the console!")
+}
+
+templ hello(name string) {
+  <div>Hello, {name}</div>
+  <p>{greeting}</p>
+  <div>
+    <button 
+      class='button'
+      aria-label='test button'
+      onClick={sampleFunction()}
+    > 
+      click me!
+    </button>
+  </div>
+}
