@@ -17,6 +17,11 @@ func getHandler(w http.ResponseWriter, r *http.Request) {
 	component.Render(r.Context(), w)
 }
 
+func updateForm(w http.ResponseWriter, r *http.Request) {
+	component := counts(global.Count)
+	component.Render(r.Context(), w)
+}
+
 func postHandler(w http.ResponseWriter, r *http.Request) {
 
 	r.ParseForm()
@@ -25,7 +30,8 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
 		global.Count++
 	}
 
-	getHandler(w, r)
+	// getHandler(w, r)
+	updateForm(w, r)
 }
 
 func main() {

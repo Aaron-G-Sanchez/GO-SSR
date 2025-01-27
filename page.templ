@@ -1,0 +1,75 @@
+package main
+
+import "strconv"
+
+var greeting = "Welcome to Go SSR!"
+
+var num = 0
+
+script sampleFunction(){
+
+  console.log("Hello from the console!")
+}
+
+var things = []string{"Soccer", "Ping Pong", "Beer"}
+
+templ head(){
+
+}
+
+
+templ hello() {
+  <div>Hello, Chravis</div>
+  <p>{greeting}</p>
+  <div>
+    <button 
+      class='button'
+      aria-label='test button'
+      onClick={sampleFunction()}
+    > 
+      click me!
+    </button>
+  </div>
+
+  <div class='list'>
+    <ul>
+      for _, thing := range things {
+        <li>{thing}</li>
+      }
+    </ul>
+  </div>
+}
+
+templ counts(global int) {
+  <form id='countsForm' action='/' method='POST' hx-post='/' hx-select='#countsForm' hx-swap='innerHTML'>
+    <div>
+      <h1>Count: { strconv.Itoa(global)}</h1>
+      <button type='submit' name='global' value='global'>Count++</button>
+    </div>
+  </form>
+}
+
+
+// MAIN PAGE COMPONENT.
+templ Page(global int) {
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GO SSR DEMO</title>
+    <script 
+      src="https://unpkg.com/htmx.org@2.0.4"
+      integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" 
+      crossorigin="anonymous" 
+      defer
+    ></script>
+
+  </head>
+  <body>
+      @hello()
+      @counts(global)
+  </body>
+  </html>
+}
+
